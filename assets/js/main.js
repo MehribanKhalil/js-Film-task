@@ -1,5 +1,7 @@
 //Select html elements
 const rowElement = document.querySelector(".row");
+const form = document.getElementById("form");
+const searchİnput = document.getElementById("searchİnput");
 
 //axios
 async function getData() {
@@ -7,7 +9,7 @@ async function getData() {
     const response = await axios ("https://api.tvmaze.com/shows");
     const data= response.data
     data.forEach((item) => {
-      console.log(item);
+      // console.log(item);
 
     //  creating element
       const cart = document.createElement("div");
@@ -70,3 +72,27 @@ getData();
 // }
 
 // getData();
+
+
+//Search
+// function searchByName() {
+//   searchValue=searchİnput.value
+//   console.log(searchİnput.value);
+// }
+
+// searchByName()
+
+searchİnput.addEventListener("input",(e)=>{
+  e.preventDefault()
+
+  const searchValue=searchİnput.value.toLowerCase()
+  // console.log(searchValue);
+  allTitles= document.querySelectorAll(".card")
+  // console.log(allTitles);
+
+  allTitles.forEach((element ,i) => {
+    element.querySelector('.card_title').textContent.toLowerCase().includes(searchValue)
+    ? element.style.display = ""
+    : element.style.display = "none";
+  });
+})
